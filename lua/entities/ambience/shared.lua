@@ -13,20 +13,15 @@ ENT.RenderGroup = RENDERGROUP_TRANSLUCENT
 
 
 function ENT:SetupDataTables()
-	self:NetworkVar( "String", 0, "SoundPath",	{ KeyName = "SoundPath",	Edit = { type = "String", order = 1, category = "Main Music",	waitforenter = true } })
+--	self:NetworkVar( "String", 0, "SoundPath",	{ KeyName = "SoundPath",	Edit = { type = "String", order = 1, category = "Main Music",	waitforenter = true } })
+--	self:NetworkVar( "String", 1, "PanicSoundPath",	{ KeyName = "PanicSoundPath",	Edit = { type = "String", order = 1, category = "Combat Music",	waitforenter = true } })
+	self:NetworkVar( "String", 0, "SoundPath",	{ KeyName = "SoundPath",	Edit = { type = "Combo", order = 1, category = "Main Music", text = "music/Vanilla/default_song.wav", values = music_table } })	
+	self:NetworkVar( "String", 1, "PanicSoundPath",	{ KeyName = "PanicSoundPath",	Edit = { type = "Combo", order = 1, category = "Combat Music", text = "music/Vanilla/default_song.wav", values = music_table } })		
 	self:NetworkVar( "Int", 0, "Range",	{ KeyName = "Range",	Edit = { type = "Int",	order = 2, category = "Main Music", min = 0, max = 10000 } })
 	self:NetworkVar( "Float", 0, "Isolation",	{ KeyName = "Isolation",	Edit = { type = "Float",	order = 3, category = "Main Music", min = 0, max = 1 } })
 	self:NetworkVar( "Float", 1, "Volume",	{ KeyName = "Volume",	Edit = { type = "Float",	order = 4, category = "Main Music", min = 0, max = 1 } })
 	self:NetworkVar( "Float", 2, "FadeTime",	{ KeyName = "FadeTime",	Edit = { type = "Float",	order = 5, category = "Main Music", min = 0, max = 10 } })
 	
-	self:NetworkVar( "String", 1, "PanicSoundPath",	{ KeyName = "PanicSoundPath",	Edit = { type = "String", order = 1, category = "Combat Music",	waitforenter = true } })
-	
-	self:SetPanicSoundPath("music/Paladin's Quest/10.wav")
-	self:SetSoundPath("music/Record of Lodoss War/1.wav")
-	self:SetRange(1000)
-	self:SetIsolation(0.7)
-	self:SetVolume(1)
-	self:SetFadeTime(3)
 	
 	if ( CLIENT ) then
 		self:NetworkVarNotify( "SoundPath", self.OnSoundPathChanged )
